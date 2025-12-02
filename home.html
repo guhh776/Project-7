@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOU9 - Ta'lim Markazi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 50px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #8B1538;
+        }
+
+        .lang-btn {
+            background: #fff;
+            border: 2px solid #8B1538;
+            padding: 5px 15px;
+            border-radius: 5px;
+            color: #8B1538;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover {
+            background: #8B1538;
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: #8B1538;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+        }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-left: 25px solid #fff;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            margin-left: 5px;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: #fff;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            background: #8B1538;
+            color: #fff;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            background: #6B0F2B;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139,21,56,0.3);
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Results Section */
+        .results {
+            padding: 80px 0;
+            background: #8B1538;
+            color: #fff;
+        }
+
+        .results h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .results-subtitle {
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 20px;
+            transition: transform 0.5s ease;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            min-width: 320px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.9);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 20px;
+            color: #8B1538;
+        }
+
+        .carousel-nav:hover {
+            background: #fff;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-nav.prev {
+            left: -20px;
+        }
+
+        .carousel-nav.next {
+            right: -20px;
+        }
+
+        /* Teachers Section */
+        .teachers {
+            padding: 80px 0;
+            background: #fff;
+        }
+
+        .teachers h2 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .teachers-subtitle {
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .teacher-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 20px;
+            min-width: 300px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .teacher-card img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        /* Student Reviews Section */
+        .reviews {
+            padding: 80px 0;
+            background: #8B1538;
+            color: #fff;
+        }
+
+        .reviews h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .review-card {
+            background: #fff;
+            border-radius: 10px;
+            min-width: 320px;
+            overflow: hidden;
+        }
+
+        .review-card img {
+            width: 100%;
+        }
+
+        .review-content {
+            padding: 20px;
+            color: #333;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: #f8f8f8;
+        }
+
+        .contact h2 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .contact-illustration {
+            text-align: center;
+        }
+
+        .contact-illustration img {
+            max-width: 300px;
+        }
+
+        .contact-form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            background: #8B1538;
+            color: #fff;
+            padding: 12px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-button:hover {
+            background: #6B0F2B;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 30px;
+        }
+
+        .footer-info h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact {
+            margin-bottom: 20px;
+        }
+
+        .footer-contact p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: #fff;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #8B1538;
+        }
+
+        .footer-map iframe {
+            width: 100%;
+            height: 250px;
+            border-radius: 10px;
+            border: none;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #888;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .about-content,
+            .contact-content,
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .carousel-track {
+                flex-direction: column;
+            }
+
+            .card,
+            .teacher-card,
+            .review-card {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjUwIiB2aWV3Qm94PSIwIDAgMTAwIDUwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwMDZEMkM7c3RvcC1vcGFjaXR5OjEiIC8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojREMxNDNDO3N0b3Atb3BhY2l0eToxIiAvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjx0ZXh0IHg9IjUiIHk9IjM1IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzYiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ1cmwoI2dyYWQpIj5ZT1U5PC90ZXh0Pjxwb2x5Z29uIHBvaW50cz0iODUsMTAgOTAsMiA5NSwxMCA5Miw2IDg4LDYiIGZpbGw9IiMwMDZEMkMiLz48L3N2Zz4=" alt="YOU9 Logo" class="logo">
+                <nav>
+                    <ul>
+                        <li><a href="#about">Biz haqimizda</a></li>
+                        <li><a href="#teachers">O'qituvchilar</a></li>
+                        <li><a href="#students">O'quvchilar</a></li>
+                        <li><a href="#results">O'quv natijalar</a></li>
+                        <li><a href="#courses">Guruhlar qatnashuvi</a></li>
+                        <li><a href="#contact">Kontakt</a></li>
+                        <li><button class="lang-btn">UZ</button></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="play-button">
+            <div class="play-icon"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Biz haqimizda</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <button class="cta-button">Biz bilan ulaning</button>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600" alt="Team Meeting">
+                    <div class="video-overlay">
+                        <div class="play-button">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="results">
+        <div class="container">
+            <h2>Bizning natijalar</h2>
+            <p class="results-subtitle">O'quvchilar o'zbekistonda sayohatlarni topishgan</p>
+            <div class="carousel">
+                <button class="carousel-nav prev" onclick="scrollCarousel('results', -1)">‹</button>
+                <div class="carousel-track" id="results-track">
+                    <div class="card">
+                        <img src="https://imgv2-1-f.scribdassets.com/img/document/725168564/original/6d8e62558c/1?v=1" alt="Certificate">
+                        <h3>Sadiqqaliyev Odiljon</h3>
+                        <div class="card-meta">
+                            <span>📚 5.0</span>
+                            <span>⏱ 8.0</span>
+                            <span>✍️ 6.0</span>
+                            <span>💬 6.0</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://imgv2-1-f.scribdassets.com/img/document/725168564/original/6d8e62558c/1?v=1" alt="Certificate">
+                        <h3>Sadiqqaliyev Odiljon</h3>
+                        <div class="card-meta">
+                            <span>📚 5.0</span>
+                            <span>⏱ 8.0</span>
+                            <span>✍️ 6.0</span>
+                            <span>💬 6.0</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://imgv2-1-f.scribdassets.com/img/document/725168564/original/6d8e62558c/1?v=1" alt="Certificate">
+                        <h3>Sadiqqaliyev Odiljon</h3>
+                        <div class="card-meta">
+                            <span>📚 5.0</span>
+                            <span>⏱ 8.0</span>
+                            <span>✍️ 6.0</span>
+                            <span>💬 6.0</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-nav next" onclick="scrollCarousel('results', 1)">›</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teachers Section -->
+    <section id="teachers" class="teachers">
+        <div class="container">
+            <h2>O'qituvchilar</h2>
+            <p class="teachers-subtitle">Eng yoqimli va qiziqarli o'qituvchilarimiz sizlarga xizmat qilishadi</p>
+            <div class="carousel">
+                <button class="carousel-nav prev" onclick="scrollCarousel('teachers', -1)">‹</button>
+                <div class="carousel-track" id="teachers-track">
+                    <div class="teacher-card">
+                        <img src="https://cdn-icons-png.freepik.com/512/15655/15655895.png?ga=GA1.1.928066426.1759815363" alt="Teacher">
+                        <h3>Sadiqqaliyev Odiljon</h3>
+                        <p>English Teacher</p>
+                    </div>
+                    <div class="teacher-card">
+                        <img src="https://cdn-icons-png.freepik.com/512/15655/15655895.png?ga=GA1.1.928066426.1759815363" alt="Teacher">
+                        <h3>Sadiqqaliyev Odiljon</h3>
+                        <p>English Teacher</p>
+                    </div>
+                    <div class="teacher-card">
+                        <img src="https://cdn-icons-png.freepik.com/512/15655/15655895.png?ga=GA1.1.928066426.1759815363" alt="Teacher">
+                        <h3>Sadiqqaliyev Odiljon</h3>
+                        <p>English Teacher</p>
+                    </div>
+                </div>
+                <button class="carousel-nav next" onclick="scrollCarousel('teachers', 1)">›</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="students" class="reviews">
+        <div class="container">
+            <h2>O'quvchilarimiz fikri</h2>
+            <p class="results-subtitle">Kursimizdan mamnun bo'lgan va qiyosida o'quvchilarni fikrlari</p>
+            <div class="carousel">
+                <button class="carousel-nav prev" onclick="scrollCarousel('reviews', -1)">‹</button>
+                <div class="carousel-track" id="reviews-track">
+                    <div class="review-card">
+                        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400" alt="Students">
+                        <div class="review-content">
+                            <h4>Ajoyib tajriba!</h4>
+                            <p>Bu yerda o'qish juda foydali bo'ldi.</p>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400" alt="Students">
+                        <div class="review-content">
+                            <h4>Professional o'qituvchilar</h4>
+                            <p>O'qituvchilar juda professional va mehribon.</p>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400" alt="Students">
+                        <div class="review-content">
+                            <h4>Zo'r natijalar</h4>
+                            <p>IELTS imtihonini muvaffaqiyatli topshirdim.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-nav next" onclick="scrollCarousel('reviews', 1)">›</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Sizni qiziqtirgan savollarga javob beramiz</h2>
+            <div class="contact-content">
+                <div class="contact-illustration">
+                    <img src="https://via.placeholder.com/300x300/8B1538/fff?text=Contact+Us" alt="Contact">
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label>Ism</label>
+                            <input type="text" placeholder="Ismingizni kiriting">
+                        </div>
+                        <div class="form-group">
+                            <label>Telefon raqami</label>
+                            <input type="tel" placeholder="+998 XX XXX XX XX">
+                        </div>
+                        <div class="form-group">
+                            <label>Xabar</label>
+                            <textarea placeholder="Xabaringizni yozing..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Yuborish</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>YOU9</h3>
+                    <div class="footer-contact">
+                        <p>📞 +998 90-123-44-67</p>
+                        <p>📞 +998 90-123-44-67</p>
+                        <p>📧 education@gmail.uz</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#">📘</a>
+                        <a href="#">📷</a>
+                        <a href="#">✈️</a>
+                        <a href="#">▶️</a>
+                    </div>
+                </div>
+                <div class="footer-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.5979878434694!2d69.24004931539683!3d41.31115797927115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b0cc379e9c3%3A0xa5a9323b4aa5cb98!2sTashkent%2C%20Uzbekistan!5e0!3m2!1sen!2s!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 YOU9 Education Center. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function scrollCarousel(section, direction) {
+            const track = document.getElementById(section + '-track');
+            const cardWidth = track.children[0].offsetWidth + 20; // card width + gap
+            const currentScroll = track.scrollLeft || 0;
+            track.scrollTo({
+                left: currentScroll + (cardWidth * direction),
+                behavior: 'smooth'
+            });
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
