@@ -1,0 +1,18 @@
+.external {
+    width: 400px;
+    margin: 20px auto;
+    background-color: lightgreen;
+    text-align: center;
+    padding: 10px;
+    border: 2px solid green;
+    font-size: 20px;
+}
+.imported {
+    width: 400px;
+    margin: 20px auto;
+    background-color: lightpink;
+    text-align: center;
+    padding: 10px;
+    border: 2px solid deeppink;
+    font-size: 20px;
+}
